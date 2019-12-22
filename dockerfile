@@ -1,4 +1,4 @@
-FROM spectreteam/python_mcr:r2016b_p35
+FROM spectreteam/python_mcr:r2019a_p37
 
 COPY download_redist.py download_redist.py
 
@@ -17,4 +17,6 @@ RUN python download_redist.py &&\
 
 RUN apt-get update &&\
     apt-get install -qq git &&\
-    pip install pip==9
+    apt-get clean -y &&\
+    rm -rf /var/lib/apt/lists/* &&\
+    pip install --upgrade --no-cache-dir pip

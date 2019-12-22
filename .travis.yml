@@ -3,23 +3,25 @@ branches:
   - master
 language: python
 python:
-- '3.4'
+- '3.5'
 services:
 - docker
 sudo: required
 env:
   global:
   - MAJOR=5
-  - MINOR=0
+  - MINOR=1
   - FIXUP=0
+  - PYTHON=37
+  - MCR=2019a
   - DOCKER_REPO=spectreteam/python_msi
   - secure: YvFdck8XDggVlLdiubiSE9rESTgDKuBPTC/7mtD4gyhnirU4uxJTPlj+bEriNmq1pCYJsMJuHbyGWsQejlGCXphoBvMCbpxngcS20zJyb8p4GAgl32gsn3O4MP0PwFGLKVAy0ijnkzoCjuzSNkDGbnEOabwpwK9RtYQtqycEhm/hIjGyVvMcrA69yvCqK2jAl+MKx3KgktEEq4FLll6BzIeCQs7o7PQ8x12XkV27vJGbZc+6R4w0nEG0Mt4hGwHrDGeGB5UN9Px7i8mMzWiJwg5OVkuqeGGz8GShgWM2W7lOTbOBGhSedD5yPBRURI5Q/IdHGViZ2Oho5vpw5k6uNURlWkuvOK6tahAHGeR1WJKf06j7cN+ihsEMDmNRbVkPhI1ya8nUG4FQ7MGjBOgT8jNHxyuAki1M1Ro8PjeFeh82BOabnn5Er20H9X7xpBjNhmggAg2ZOTaalLljJ0PdspqbYY098fUU21sayNrUqyD1WpXB4JhHFkzZAaZapzo7nBHU8uY/u3pEcmBG15KwRuZ2f46Lgd5oUx/3Z2X4i6EhnTA6LFRyLncZMdVCQalJp8vAEkgjNzsHMxTfpMNgaSdW4i3mPp1dL+68irHJfZugPoyyqJAxNPCluk7WFAVDl7/55RK7fi5U6gF2e5gqCz9UUF6gej8l/DaVH6Ogq1o=
   - secure: Sm0buZ8iM89qsqgcnlIwvPyvkXaRy0iZW4KlsHENMOLsByjtraIBZgKESyY28iFSQ89Z8T39CqGwvLS9ryDfLLKlSJ2c3aT7kxXevnLeSWvvO/vDETFE788y71zytzYRLggttur2VeZHkN9skOuhc/eSozqA5bFcie+ldN5ywNbHHThDvg14aEO6uIgrKrtQZ9lEY8KK3HK84SoRm17knRMUFVMi5eVxqmKBUsjA6VrELL7KodSfuo7ARvJs985xwlw2EB8CPxCX8dfKRMvimysC707GkLRQlXEoaUVpEMjO+P/aLVa8sYAvZ/tD7RaEvpg0iY/8/M5YRaz5bI4stCpbNSCWu9N5TaJkq18AjcgQi9VaAuENHjJZZVHbxWbtB9vQ3tJk12ugAUg9HnPMd3tqCm0nufT6U/wrjtuGJTCmWO2PVsjnC0QeXOYlZBDrr9LJ24MgjF3plGwRdwKesJpLcpa33kB8zF0Xb68j088UR0N9wBZlaaHieNqcICZgjmhc086DLMamKofKDX7f4plRPpaIZoFT2f5axdh7KcWTuRyh3gYkkpB4GU3p2VCvMRIWyIa0netj4dzN30fUDK8wfd+O0PUDdc8AoAqxV/TyRu1blmER+6Sk5oJh1VjkdjY3YGWl5g3P1GFf4bI9eu5Mvt0ZTgn2Iwqhajwef7A=
 install:
 - echo $DOCKER_PASSWORD | docker login -u $DOCKER_USER --password-stdin
 script:
-- docker build -t $DOCKER_REPO:v$MAJOR.$MINOR.$FIXUP -t $DOCKER_REPO:latest .
-- docker push $DOCKER_REPO:v$MAJOR.$MINOR.$FIXUP
+- docker build -t $DOCKER_REPO:v$MAJOR.$MINOR.$FIXUP_$MCR_py$PYTHON -t $DOCKER_REPO:latest .
+- docker push $DOCKER_REPO:v$MAJOR.$MINOR.$FIXUP_$MCR_py$PYTHON
 - docker push $DOCKER_REPO:latest
 notifications:
   webhooks:
