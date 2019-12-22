@@ -20,8 +20,8 @@ env:
 install:
 - echo $DOCKER_PASSWORD | docker login -u $DOCKER_USER --password-stdin
 script:
-- docker build -t $DOCKER_REPO:v$MAJOR.$MINOR.$FIXUP_$MCR_py$PYTHON -t $DOCKER_REPO:latest .
-- docker push $DOCKER_REPO:v$MAJOR.$MINOR.$FIXUP_$MCR_py$PYTHON
+- docker build -t $DOCKER_REPO:v$MAJOR.$MINOR.$FIXUP.$MCR.py$PYTHON -t $DOCKER_REPO:latest .
+- docker push $DOCKER_REPO:v$MAJOR.$MINOR.$FIXUP.$MCR.py$PYTHON
 - docker push $DOCKER_REPO:latest
 notifications:
   webhooks:
